@@ -44,7 +44,7 @@ public static List<String> users = new LinkedList<>();
 //            System.out.println(ex);
 //        }
     }
-     public static void incertNewUser(String userName, String password){
+     public static   void incertNewUser(String userName, String password){
          try{
              Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
              try (Connection conn = getConnection()){
@@ -83,6 +83,33 @@ statement.executeUpdate(sqlCommand);
          }
      }
 
+    public static   boolean isUserExist(String login){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+            try (Connection conn = getConnection()){
+                System.out.println("Connection to Store DB succesfull!");
+                Statement statement = conn.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM `mydb`.`accounts`");
+                while (resultSet.next()){
+                    String user = resultSet.getString(1);
+                    if(user.equals(login)){
+                        System.out.println("already exist");
+                        return true;
+                    }
+
+                }
+
+
+        }
+        }
+        catch(Exception ex){
+            System.out.println("Connection failed...");
+
+            System.out.println(ex);
+        }
+
+        return false;
+    }
 
      public static boolean logIn(String login, String password){
          try{
@@ -93,16 +120,14 @@ statement.executeUpdate(sqlCommand);
                  ResultSet resultSet = statement.executeQuery("SELECT * FROM `mydb`.`accounts`");
                  while (resultSet.next()){
                      String user = resultSet.getString(1);
-                    users.add(user);
+                    String pass = resultSet.getString(2);
+                    if((user.equals(login)) && (pass.equals(password))){
+                        System.out.println("Sign In !!");
+                        return true;
+                    }
                  }
 
-                 for (String a: users
-                      ) {
-                     if(a.equals(login)){
-                         System.out.println("получилось");
-                         return true;
-                     }
-                 }
+
              }
          }
          catch(Exception ex){

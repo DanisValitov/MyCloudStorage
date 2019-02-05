@@ -1,19 +1,19 @@
 package com.danis.valitov.cloud.common;
 
 public class PacketDescription extends  MyPacket{
-    private int count;
+    private long count;
     private String  fileName;
 
-    public PacketDescription(int count, String fileName) {
+    public PacketDescription(long count, String fileName) {
         this.count = count;
         this.fileName = fileName;
     }
 
-    public int getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(long count) {
         this.count = count;
     }
 

@@ -12,6 +12,7 @@
             fx:controller="com.danis.valitov.cloud.client.controller.AuthController">
   <children>
     <Label  layoutX="24.0" layoutY="14.0" text="Login:"  />
+    <Label fx:id="status"  layoutX="80.0" layoutY="14.0" text=" "  />
     <Label  layoutX="24.0" layoutY="63.0" text="Password:" />
     <TextField fx:id="login" layoutX="24.0" layoutY="30.0" prefWidth="200.0" />
     <PasswordField  fx:id="password" layoutX="24.0" layoutY="86.0" prefWidth="200.0" />
